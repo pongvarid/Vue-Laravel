@@ -28,17 +28,17 @@ class TableController extends Controller
        if(isset($_GET['search'])){
         $search = $_GET['search'];
         if($sort != '' ){
-            return $note->where('name','LIKE',$search)->OrderBy($sort , $sortType)->paginate(5);
+            return $note->where('name','LIKE',$search)->OrderBy($sort , $sortType)->paginate(2);
       }else{
-       return $note->where('name',$search)->paginate(5);
+       return $note->where('name',$search)->paginate(2);
       }
 
        }else{
 
         if($sort != '' ){
-            return $note->OrderBy($sort , $sortType)->paginate(5);
+            return $note->OrderBy($sort , $sortType)->paginate(2);
       }else{
-       return $note->paginate(5);
+       return $note->paginate(2);
       }
 
        }

@@ -68,8 +68,7 @@
             await store.dispatch("setting/getChoice");
             await this.loginCheck(); 
             await  this.$store.dispatch('Login/getUserData');
-            // if(this.$router.history.current.path == '/root' && this.$router.history.current.path == '/login'){
-                if( this.$router.history.current.path == '/login'){
+             if(this.$router.history.current.path == '/root' && this.$router.history.current.path == '/login'){
                       this.changeNav(false);
              }
             // this.load(true);

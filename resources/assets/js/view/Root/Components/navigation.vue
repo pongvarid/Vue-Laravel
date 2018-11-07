@@ -1,8 +1,7 @@
 <!----------Make By Pongvarid---------------->
-<template><div>
-   <br><br><br>
+<template>
+     
  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
- 
    <div class="container">
 <div class="btn-group" role="group" aria-label="Basic example">
   <button type="button" class="btn btn-outline-warning wh"><b>Mulberry</b></button>
@@ -17,11 +16,11 @@
       <li class="nav-item active">
         <a class="nav-link" @click="$router.push('/root')">User Setting <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" @click="$router.push('/root/variable')">Varible Setting</a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link " @click="$router.push('/root/choice')" >Choice Setting</a>
+      <li class="nav-item">
+        <a class="nav-link disabled" @click="$router.push('/root/choice')" >Choice Setting</a>
       </li>
     </ul>
 
@@ -29,9 +28,6 @@
    </div>
 
 </nav>
-
-</div>
-
 </template>
 
 <script>

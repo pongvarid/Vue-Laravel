@@ -1,16 +1,25 @@
 <!----------Make By YourName---------------->
  <template>
-<div class="container"><br><br><br>
-    <h1>Web</h1>
-</div>
+<div>
+   <div class="card shadow-bl ">
+                    <div class="card-header wh ldeep ">
+                        Company List
+                    </div>
+                    <div class="container hg222">
+                     
+                    </div>
+                </div>
+    </div>
 </template>
 
     <script>
+        import { get } from "vuex-pathify"; 
+   
 export default {
     name: 'Root',
     /*-------------------------Load Component---------------------------------------*/
     components: {
-
+ 
     },
   /*-------------------------Set Component---------------------------------------*/
 props:{

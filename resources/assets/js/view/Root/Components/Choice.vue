@@ -2,7 +2,7 @@
 <template>
     <div>
         <h1 class="nm">Choice Header</h1>
-        <b-button :class="_mbs('navbar') + ' btn round'" @click="onModal()">Add Choice</b-button>
+        <b-button class="" @click="onModal()">Add Choice</b-button>
         <hr>
         <table class="table table-hover">
             <thead>
@@ -21,17 +21,17 @@
                     <th v-if="choices.value == '' || choices.value == null" scope="row">{{choices.type}}</th>
                     <td v-if="choices.value == '' || choices.value == null">
                         <b-btn v-if="choices.value == '' || choices.value == null" @click="onUpdateModal(choices)"
-                            class="lpop round" style="border:none;">Edit</b-btn>
+                            class="lbtn-deep circle" style="border:none;">Edit</b-btn>
                         <b-btn v-if="choices.value == '' || choices.value == null" @click="destroyData(choices)" style="border:none;"
-                            class="lnot round">Delete</b-btn>
+                            class="lbtn-not circle">Delete</b-btn>
                     </td>
                 </tr>
             </tbody>
         </table>
         
         <modal name="choice-modal" height="230" resizable adaptive draggable :clickToClose="false">
-              <div :class="_mbs('navbar') +' modal-header'">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Choice</h5>
+            <div class="modal-header lnav-deep wh">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
                 <button type="button" class="close" @click="offModal()">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -89,7 +89,7 @@
         /*-------------------------Vuex Methods and Couputed Methods------------------------------------------*/
         computed: {
             choice: get('Choice/choice'),
-             _mbs: get("setting/setValue"), 
+         
         },
         /*-------------------------Methods------------------------------------------*/
         methods: {

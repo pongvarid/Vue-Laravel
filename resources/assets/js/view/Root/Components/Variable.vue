@@ -2,10 +2,10 @@
 <template>
     <div>
         <h1 class="nm">Varible Managment</h1>
-        <b-button :class="'btn round ' + _mbs('navbar')" @click="onModal()">Add Varible</b-button> <hr>
+        <b-button class="lbtn-deep mrl-20 circle" @click="onModal()">Add Varible</b-button> <hr>
         <table class="table table-hover">
             <thead>
-                <tr :class="_mbs('navbar')">
+                <tr class="lnav-deep wh">
                     <th scope="col">Id</th>
                     <th scope="col">Name</th>
                     <th scope="col">Value</th>
@@ -27,14 +27,14 @@
                     <span class="nm" v-if="val.permission == 1"  style="color:green;">Unlock</span>
                     </th>
                     <td>
-                        <b-btn @click="onUpdateModal(val)" class="lpop round" style="border:none;">Edit</b-btn>
-                        <b-btn v-if="val.permission == 1" @click="destroyData(val)" style="border:none;" class="lnot round">Delete</b-btn>
+                        <b-btn @click="onUpdateModal(val)" class="lbtn-deep circle" style="border:none;">Edit</b-btn>
+                        <b-btn v-if="val.permission == 1" @click="destroyData(val)" style="border:none;" class="lbtn-not circle">Delete</b-btn>
                     </td>
                 </tr>
             </tbody>
         </table>
         <modal name="variable-modal" height="340" resizable adaptive draggable :clickToClose="false">
-            <div :class="_mbs('navbar')+ ' modal-header'" >
+            <div class="modal-header lnav-deep wh">
                 <h5 class="modal-title" id="exampleModalCenterTitle">Varible</h5>
                 <button type="button" class="close" @click="offModal()">
                     <span aria-hidden="true">&times;</span>
@@ -89,7 +89,6 @@
         /*-------------------------Vuex Methods and Couputed Methods------------------------------------------*/
         computed: {
             variable: get('Variable/variable'),
-             _mbs: get("setting/setValue"), 
         },
         /*-------------------------Methods------------------------------------------*/
         methods: {

@@ -5,10 +5,10 @@
         <navbar />
         <div class="container"><br><br>
             <div class='row'>
-                <div class='col-4 '>
+                <div class='col-6 '>
                     <UserPermissionLayout />
                 </div>
-                <div class='col-8'>
+                <div class='col-6'>
                     <UserManage />
                 </div>
             </div>
@@ -73,7 +73,7 @@
             }, 
             /******* Methods default run ******/
             load: async function () {
-                //this.changeNav(false);
+                this.changeNav(false);
                history.pushState(null, null, location.href);
                             window.onpopstate = function () {
                                 this.$router.push('/main');

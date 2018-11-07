@@ -2,7 +2,7 @@
 <template>
     <div>
         <h2>Permission of User</h2>
-        <b-btn @click="onPermissionModal()" :class="'btn round ' + _mbs('navbar')"><span class="fa fa-plus-circle"></span>
+        <b-btn @click="onPermissionModal()" class="btn btn-light lbtn-sea no-border circle"><span class="fa fa-plus-circle"></span>
             &nbsp;Add Permission</b-btn>
         <hr>
         <ul class="w3-ul shadow mr-10 pd-10" v-for="per in permission">
@@ -17,14 +17,14 @@
 
         </ul>
         <b-modal v-model="m_permission" hide-header hide-footer no-close-on-backdrop no-close-on-esc centered>
-            <Button :class="'btn round ' + _mbs('navbar')" @click="offPermissionModal()">X</Button> &nbsp;Add Permission<hr>
+            <Button class="btn lbtn-not" @click="offPermissionModal()">X</Button>
             <div class="container">
-              <center>  <b-form>
-                    <input v-model="fromPermission.name" type="text" class="form-control" placeholder="Name Permission">
-                    <input v-model="fromPermission.type" type="hidden" placeholder="type Permission"><hr>
-                    <Button class="btn btn-lg round lok" v-if="!updatedPermission" @click="storePermission()">Save</Button>
-                    <Button class="btn btn-lg round lpop" v-if="updatedPermission" @click="updatePermission()">Update</Button>
-                </b-form>  </center>
+                <b-form>
+                    <input v-model="fromPermission.name" type="text" placeholder="Name Permission">
+                    <input v-model="fromPermission.type" type="hidden" placeholder="type Permission">
+                    <Button class="btn lbtn-ok" v-if="!updatedPermission" @click="storePermission()">Save</Button>
+                    <Button class="btn lbtn-pop" v-if="updatedPermission" @click="updatePermission()">Update</Button>
+                </b-form>
             </div>
 
         </b-modal>
@@ -71,7 +71,6 @@
         /*-------------------------Vuex Methods and Couputed Methods------------------------------------------*/
         computed: {
             permission: get('permission/permission'),
-             _mbs: get("setting/setValue"),
         },
         /*-------------------------Methods------------------------------------------*/
         methods: {

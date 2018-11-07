@@ -1,18 +1,9 @@
 <!----------Make By YourName---------------->
 <template>
     <div> 
-        <div class="container"><br><br><br>
-            <h2>Helllo</h2><hr>
-        
-            
-                <div class="card shadow-bl  ">
-                    <div :class="'card-header wh ' + _mbs('navbar')">
-                        User Data
-                    </div>
-                    <div class="container pd-20">
-                            <pre>{{User}}</pre>
-                    </div>
-                </div>
+        <div class="container">
+            <h2>Helllo</h2><br><br><br>
+            <pre>{{User.user.name}}</pre>
         </div>
     </div>
 </template>
@@ -51,7 +42,6 @@
         /*-------------------------Vuex Methods and Couputed Methods------------------------------------------*/
         computed: {
             User:get("Login/userData"),
-                 _mbs: get("setting/setValue"),
         },
         /*-------------------------Methods------------------------------------------*/
         methods: {

@@ -9,8 +9,8 @@
       <button  class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey wh" @click="on()">
         <i class="fa fa-bars"></i>
         &nbsp;Menu</button>
-      <span class="w3-bar-item w3-right wh"><img class="w3-circle avatar" src="https://image.freepik.com/free-icon/male-user-shadow_318-34042.jpg"
-          alt=""> {{User.user.name}}</span>
+      <span class="w3-bar-item w3-right wh"><img class="w3-circle avatar" src="https://scontent.fbkk9-2.fna.fbcdn.net/v/t1.0-1/p240x240/37784883_1856053931120755_8597063430257508352_n.jpg?_nc_cat=109&_nc_ht=scontent.fbkk9-2.fna&oh=2e892dc49587208f3beb946cf657de79&oe=5C889D23"
+          alt="">{{name}}</span>
       <button class="w3-bar-item w3-button  w3-hide-small w3-hover-none w3-hover-text-light-grey wh mrt-8" @click="SlideChange()"><i
           class="fa fa-bars"></i></button>
 
@@ -30,17 +30,126 @@
       </div>  ----------><br><br><br>
       <div class="w3-bar-block wh nav-noselect font inner-container">
      
-       <a @click="$router.push('/Component')" class="w3-bar-item w3-button  pd-16    ">&nbsp;&nbsp;&nbsp;&nbsp;<i class="mdi mdi-logout"></i>&nbsp;
-          Component & Alerts</a>
-        
-        <a @click="$router.push('/Datatable')" class="w3-bar-item w3-button  pd-16    ">&nbsp;&nbsp;&nbsp;&nbsp;<i class="mdi mdi-logout"></i>&nbsp;
-          DataTable</a>
+      
+        <!---- <a @click="$router.push('/debug')" class="w3-bar-item w3-button  pd-16  w3-active"  >&nbsp;&nbsp;&nbsp;&nbsp;<i class="mdi mdi-shopping"></i>&nbsp;
+          Component</a>
+         <a @click="$router.push('/debug/select')"    class="w3-bar-item w3-button  pd-16    "  >&nbsp;&nbsp;&nbsp;&nbsp;<i class="mdi mdi-shopping"></i>&nbsp;
+          Select</a>
+             <a @click="$router.push('/debug/datatable')"   class="w3-bar-item w3-button  pd-16    "  >&nbsp;&nbsp;&nbsp;&nbsp;<i class="mdi mdi-shopping"></i>&nbsp;
+          Datable</a>
+          
+              <a @click="$router.push('/debug/alert')"    class="w3-bar-item w3-button  pd-16    "  >&nbsp;&nbsp;&nbsp;&nbsp;<i class="mdi mdi-shopping"></i>&nbsp;
+          Alert</a>
+
+            <a @click="$router.push('/setting')"  class="w3-bar-item w3-button  pd-16    "  >&nbsp;&nbsp;&nbsp;&nbsp;<i class="mdi mdi-shopping"></i>&nbsp;
+          Setting</a> 
+        <a @click="$router.push('/root')"  class="w3-bar-item w3-button  pd-16    " >&nbsp;&nbsp;&nbsp;&nbsp;<i class="mdi mdi-shopping"></i>&nbsp;
+          Root</a> ---->
+
+       <a @click="logout()" class="w3-bar-item w3-button pd-16" >&nbsp;&nbsp;&nbsp;&nbsp;
+         <i class="mdi mdi-desktop-mac-dashboard"></i>&nbsp;
+          Dashboard
+        </a>
+
+       
+
+         <b-btn v-b-toggle.collapse1 class="w3-bar-item w3-button pd-16" style="background:transparent;">&nbsp;&nbsp;&nbsp;&nbsp;
+         <i class="mdi mdi-account-convert"></i>&nbsp;
+          Lead</b-btn>
+            <b-collapse id="collapse1" class="mt-2 lhead">
+               <a  dv-b-toggle.lead class="w3-bar-item w3-button pd-16" >&nbsp;&nbsp;&nbsp;&nbsp;
+                <i class="mdi mdi-information"></i>&nbsp;
+                  Information
+                </a>
+
+                 <a  dv-b-toggle.lead class="w3-bar-item w3-button pd-16" >&nbsp;&nbsp;&nbsp;&nbsp;
+                  <i class="mdi mdi-chart-bubble"></i>&nbsp;
+                   Acticity
+                  </a>
+            </b-collapse>
+ 
+      
+
+        <a @click="logout()" class="w3-bar-item w3-button pd-16" >&nbsp;&nbsp;&nbsp;&nbsp;
+         <i class="mdi mdi-human-greeting"></i>&nbsp;
+          Agent
+        </a>
+
+        <a @click="logout()" class="w3-bar-item w3-button pd-16" >&nbsp;&nbsp;&nbsp;&nbsp;
+         <i class="mdi mdi-human-male-female"></i>&nbsp;
+          Supplier
+        </a>
+
+        <a @click="logout()" class="w3-bar-item w3-button pd-16" >&nbsp;&nbsp;&nbsp;&nbsp;
+         <i class="mdi mdi-calculator-variant"></i>&nbsp;
+          Operation
+        </a>
+
+        <a @click="logout()" class="w3-bar-item w3-button pd-16" >&nbsp;&nbsp;&nbsp;&nbsp;
+         <i class="mdi mdi-human-handsup"></i>&nbsp;
+          Account
+        </a>
+ 
+        <b-btn v-b-toggle.Contract class="w3-bar-item w3-button pd-16" style="background:transparent;">&nbsp;&nbsp;&nbsp;&nbsp;
+         <i class="mdi mdi-account-card-details"></i>&nbsp;
+          Contract</b-btn>
+            <b-collapse id="Contract" class="mt-2 lhead">
+               <a  dv-b-toggle.lead class="w3-bar-item w3-button pd-16" >&nbsp;&nbsp;&nbsp;&nbsp;
+                <i class="mdi mdi-information"></i>&nbsp;
+                   Information
+                </a>
+
+                 <a  dv-b-toggle.lead class="w3-bar-item w3-button pd-16" >&nbsp;&nbsp;&nbsp;&nbsp;
+                  <i class="mdi mdi-chart-bubble"></i>&nbsp;
+                     Acticity
+                  </a>
+            </b-collapse>
+ 
+        <b-btn v-b-toggle.Opperatunity class="w3-bar-item w3-button pd-16" style="background:transparent;">&nbsp;&nbsp;&nbsp;&nbsp;
+         <i class="mdi mdi-hexagon-multiple"></i>&nbsp;
+          Opperatunity</b-btn>
+            <b-collapse id="Opperatunity" class="mt-2 lhead">
+               <a  dv-b-toggle.lead class="w3-bar-item w3-button pd-16" >&nbsp;&nbsp;&nbsp;&nbsp;
+                <i class="mdi mdi-information"></i>&nbsp;
+                   Information
+                </a>
+
+                 <a  dv-b-toggle.lead class="w3-bar-item w3-button pd-16" >&nbsp;&nbsp;&nbsp;&nbsp;
+                  <i class="mdi mdi-chart-bubble"></i>&nbsp;
+                     Acticity
+                  </a>
+            </b-collapse>
+
+        <a @click="logout()" class="w3-bar-item w3-button pd-16" >&nbsp;&nbsp;&nbsp;&nbsp;
+         <i class="mdi mdi-shopping"></i>&nbsp;
+          Product
+        </a>
+
+        <a @click="logout()" class="w3-bar-item w3-button pd-16" >&nbsp;&nbsp;&nbsp;&nbsp;
+         <i class="mdi mdi-chart-areaspline"></i>&nbsp;
+          Prediction
+        </a>
+
+        <a @click="logout()" class="w3-bar-item w3-button pd-16" >&nbsp;&nbsp;&nbsp;&nbsp;
+         <i class="mdi mdi-file-document-box-multiple"></i>&nbsp;
+          Report
+        </a>
+ 
         
          <b-btn v-b-toggle.setting class="w3-bar-item w3-button pd-16" style="background:transparent;">&nbsp;&nbsp;&nbsp;&nbsp;
          <i class="mdi mdi-settings"></i>&nbsp;
           Setting</b-btn>
-            <b-collapse id="setting" :class="'mt-2 '+ _mbs('navbar_collapse')"  >
-              
+            <b-collapse id="setting" class="mt-2 lhead"  >
+               <a  @click="$router.push('/setting/company')"  class="w3-bar-item w3-button pd-16" >&nbsp;&nbsp;&nbsp;&nbsp;
+                <i class="mdi mdi-office-building"></i>&nbsp;
+                  Company
+                </a>
+
+                 <a  @click="$router.push('/setting/user')"  class="w3-bar-item w3-button pd-16" >&nbsp;&nbsp;&nbsp;&nbsp;
+                  <i class="mdi mdi-account"></i>&nbsp;
+                    User
+                  </a>
+
                      <a  @click="$router.push('/setting/web')"  class="w3-bar-item w3-button pd-16" >&nbsp;&nbsp;&nbsp;&nbsp;
                   <i class="mdi mdi-web"></i>&nbsp;
                     Website Setting
@@ -61,7 +170,6 @@
       id="myOverlay"></div>
 
     <!-- !PAGE CONTENT! -->
-  
 
 
     <!-- End page content -->
@@ -77,13 +185,14 @@
   import swal from 'sweetalert2'
 
   export default {
-    name: "App",
-
+   
     data: () => ({
       nbsp: '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
       nav: true,
       navCss: 'none',
       navFull: true,
+      name:'',
+       
     }),
     computed: {
       User:get("Login/userData"),
@@ -102,10 +211,14 @@
         
     },
     mounted() {
-      
+      this.load()
     },
     methods: {
 
+     load:async function(){
+     //  this.name =  this.User.user.name;
+       
+     },
       lead(){
       swal({
         title: 'Where did yo go to Lead?',

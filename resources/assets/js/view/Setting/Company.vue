@@ -10,56 +10,40 @@
                             <h3 class="fs30"> <i class="mdi mdi-office-building fs60"></i>&nbsp;&nbsp;Company Setting</h3>
                         </div>
                         <div class='col-2'>
-                            <i class="mdi mdi-plus-circle fs60" style="color:blue; float:right"></i>
+                            <AddCompany />
                         </div>
                     </div>
                 </b-card>
             </div>
 
             <div class="col-6 mrt-30">
-                <div class="card shadow-bl  ">
-                    <div class="card-header wh ldeep">
-                        Company Data Management
-                    </div>
-                    <div class="container pd-20">
-                        <center><img class="round-full wd150 hg150" src="http://www.three.co.uk/hub/wp-content/uploads/Google-logo-1-resized.jpg"
-                                alt=""></center>
-                           
-                                 <center> <h2>Google Co.ld</h2>
-                                  <hr></center>
-                                     <div class="mrl-20">
-                                  <h4 class="fs18"><b>Company ID :</b>&nbsp; 234556</h4>
-                                  <h4 class="fs18"><b>Business Type :</b>&nbsp; Search Engineer</h4>
-                                  <h4 class="fs18"><b>Establish :</b>&nbsp; 12/02/1992</h4> 
-                                  <h4 class="fs18"><b>Currency :</b>&nbsp; Dolla </h4> 
-                                  <hr>
-                              </div>
-                    </div>
-                </div>
+                <MyCompany />
             </div>
 
             <div class="col-6 mrt-30">
-                <div class="card shadow-bl ">
-                    <div class="card-header wh ldeep ">
-                        Company List
-                    </div>
-                    <div class="container hg222">
-
-                    </div>
-                </div>
+                <ListCompany />
             </div>
 
         </div>
-    <br><br>
+        <br><br>
     </div>
 </template>
 
 <script>
+    import {
+        get
+    } from "vuex-pathify";
+
+    import AddCompany from '../../components/NewComponent/Setting/Company/AddCompany';
+    import ListCompany from '../../components/NewComponent/Setting/Company/CompanyList';
+    import MyCompany from '../../components/NewComponent/Setting/Company/MyCompany.vue';
     export default {
         name: 'Root',
         /*-------------------------Load Component---------------------------------------*/
         components: {
-
+            AddCompany,
+            ListCompany,
+            MyCompany
         },
         /*-------------------------Set Component---------------------------------------*/
         props: {
@@ -68,7 +52,7 @@
         /*-------------------------DataVarible---------------------------------------*/
         data() {
             return {
-
+                time: '',
             };
         },
         /*-------------------------Run Methods when Start this Page------------------------------------------*/

@@ -100,8 +100,3 @@ background: -ms-linear-gradient(left, rgba(241,231,103,1) 0%, rgba(254,182,69,1)
 background: linear-gradient(to right, rgba(241,231,103,1) 0%, rgba(254,182,69,1) 100%);
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1e767', endColorstr='#feb645', GradientType=1 );
 }
-
-
-.bg{
-    background:red!important;
-}

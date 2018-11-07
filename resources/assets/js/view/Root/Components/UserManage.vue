@@ -2,12 +2,12 @@
 <template>
     <div>
         <h2>User Management</h2>
-        <b-btn @click="onModal()" :class="'btn round ' + _mbs('navbar')"><span class="fa fa-plus-circle"></span>
+        <b-btn @click="onModal()" class="btn btn-light lbtn-sea no-border circle"><span class="fa fa-plus-circle"></span>
             &nbsp;Add User</b-btn>
         <hr>
         <table class="table table-hover">
             <thead>
-                <tr :class="_mbs('navbar')">
+                <tr class="lnav-deep wh">
                     <th scope="col">Id</th>
                     <th scope="col">Email</th>
                     <th scope="col">Name</th>
@@ -22,15 +22,15 @@
                     <td>{{User.name}}</td>
                     <td>{{_get(User.permission)}}</td>
                     <td>
-                        <b-btn @click="onUpdateModal(User)" class="lpop round" style="border:none;">Edit</b-btn>
-                        <b-btn @click="destroyData(User)" style="border:none;" class="lnot round">Delete</b-btn>
+                        <b-btn @click="onUpdateModal(User)" class="lbtn-deep circle" style="border:none;">Edit</b-btn>
+                        <b-btn @click="destroyData(User)" style="border:none;" class="lbtn-not circle">Delete</b-btn>
                     </td>
                 </tr>
             </tbody>
         </table>
         <modal name="user-modal" height="340" resizable adaptive draggable :clickToClose="false">
-            <div :class="'modal-header ' + _mbs('navbar')">
-                <h5 class="modal-title" id="exampleModalCenterTitle">User Management</h5>
+            <div class="modal-header lnav-deep wh">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
                 <button type="button" class="close" @click="offModal()">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -93,7 +93,6 @@
         computed: {
             user: get('user/user'),
             _get: get("setting/getValue"),
-             _mbs: get("setting/setValue"),
         },
         /*-------------------------Methods------------------------------------------*/
         methods: {

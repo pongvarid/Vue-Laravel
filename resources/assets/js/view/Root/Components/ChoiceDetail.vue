@@ -2,7 +2,7 @@
 <template>
     <div>
         <h1 class="nm">Choice Detail</h1>
-        <b-button :class="_mbs('navbar') + ' btn round'" @click="onModal()">Add Choice</b-button>
+        <b-button class="" @click="onModal()">Add Choice</b-button>
 
         <hr>
 
@@ -29,16 +29,16 @@
                     <th v-if="choices.type == convert() && choices.value != null " scope="row">{{choices.type}}</th>
                     <td v-if="choices.type == convert() && choices.value != null ">
                         <b-btn v-if="choices.type == convert() && choices.value != null " @click="onUpdateModal(choices)"
-                            class="lpop round" style="border:none;">Edit</b-btn>
+                            class="lbtn-deep circle" style="border:none;">Edit</b-btn>
                         <b-btn v-if="choices.type == convert() && choices.value != null " @click="destroyData(choices)"
-                            style="border:none!important;" class="lnot round">Delete</b-btn>
+                            style="border:none;" class="lbtn-not circle">Delete</b-btn>
                     </td>
                 </tr>
             </tbody>
         </table>
         <modal name="detail-modal" height="290" resizable adaptive draggable :clickToClose="false">
-            <div :class="_mbs('navbar') +' modal-header'">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Add Choice</h5>
+            <div class="modal-header lnav-deep wh">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
                 <button type="button" class="close" @click="offModal()">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -105,8 +105,7 @@
         /*-------------------------Vuex Methods and Couputed Methods------------------------------------------*/
         computed: {
             choice: get('Choice/choice'),
-            _re: get('setting/getFind'),
-             _mbs: get("setting/setValue"), 
+            _re: get('setting/getFind')
 
         },
         /*-------------------------Methods------------------------------------------*/
