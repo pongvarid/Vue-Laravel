@@ -48,7 +48,9 @@ window.events = new Vue();
 window.flash = function(message, type = 'success') {
     window.events.$emit('flash', message, type);
 };
- 
+
+require('./bootstrap')
+window.Vue = require('vue');
  
 new Vue({
     el: '#app',
@@ -56,4 +58,10 @@ new Vue({
     store: store,  
     render: h => h(App),
    
+    mounted(){
+        Echo.channel('noti-channel')
+        .listen('NotificationEvent', (e) => {
+            console.log('notification ready');
+        });
+    }
 });
