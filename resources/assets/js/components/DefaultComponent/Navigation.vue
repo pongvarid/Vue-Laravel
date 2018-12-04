@@ -1,301 +1,143 @@
-<template>
-  <div  v-if="Nav">
+<template lang="html">
 
-    <!-- Top container -->
-    <div   :class="'w3-bar w3-top shadow w3-large '+_mbs('navbar')" style="z-index:4">
-       
-      <span   class="w3-bar-item w3-left w3-hide-small">
-        <img  src="../../assets/image/logo.png" style="height:40px!important"></span>
-      <button  class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey wh" @click="on()">
-        <i class="fa fa-bars"></i>
-        &nbsp;Menu</button>
-      <span class="w3-bar-item w3-right wh"><img class="w3-circle avatar" src="https://scontent.fbkk9-2.fna.fbcdn.net/v/t1.0-1/p240x240/37784883_1856053931120755_8597063430257508352_n.jpg?_nc_cat=109&_nc_ht=scontent.fbkk9-2.fna&oh=2e892dc49587208f3beb946cf657de79&oe=5C889D23"
-          alt="">{{name}}</span>
-      <button class="w3-bar-item w3-button  w3-hide-small w3-hover-none w3-hover-text-light-grey wh mrt-8" @click="SlideChange()"><i
-          class="fa fa-bars"></i></button>
+    <div id="parentx">
+        <vs-navbar   class=" lblue" style="   z-index: -1;">
+            <vs-button type="flat"   icon="menu"></vs-button>
 
+            <vs-spacer></vs-spacer>
+
+            <vs-navbar-item index="0">
+                <a href="#"> <img class="hg40" src="@a/image/ver.png" /> </a>
+            </vs-navbar-item>
+
+        </vs-navbar>
+        <vs-sidebar    v-if="login"  :reduce="reduce" :reduce-not-hover-expand="notExpand" parent="body" default-index="1" class=" lblue"
+            spacer v-model="active">
+            <div class="header-sidebar" slot="header">
+              
+                <center>
+                    <vs-avatar @click="$router.push('/profile')" size="70px" :src="getImge(userData)" />
+                </center>
+            </div>
+
+ 
+
+        <vs-sidebar-item @click=" change('/','0')" :class="checkRouter(0)"  index="0" icon="dashboard">
+                &nbsp;Dashboard
+        </vs-sidebar-item>
+        <vs-sidebar-item @click=" change('/lead','4')" :class="checkRouter(4)"  index="4" icon="info">
+                &nbsp;Lead
+        </vs-sidebar-item>
+        <vs-sidebar-item @click=" change('/agent','5')" :class="checkRouter(5)"  index="5" icon="assignment_ind">
+                &nbsp;Agent
+        </vs-sidebar-item>
+        <vs-sidebar-item @click=" change('/supplier','6')" :class="checkRouter(6)"  index="6" icon="wc">
+                &nbsp;Supplier
+        </vs-sidebar-item>
+        <vs-sidebar-item @click=" change('/operation','7')" :class="checkRouter(7)"  index="7" icon="line_style">
+                &nbsp;Operation
+        </vs-sidebar-item>
+        <vs-sidebar-item @click=" change('/account','8')" :class="checkRouter(8)"  index="8" icon="accessibility">
+                &nbsp;Account
+        </vs-sidebar-item>
+        <vs-sidebar-item @click=" change('/contact','9')" :class="checkRouter(9)"  index="9" icon="featured_play_list">
+                &nbsp;Contact
+        </vs-sidebar-item>
+        <vs-sidebar-item @click=" change('/opportunity','10')" :class="checkRouter(10)"  index="10" icon="public">
+                &nbsp;Opportunity
+        </vs-sidebar-item>
+        <vs-sidebar-item @click=" change('/product','3')" :class="checkRouter(3)"  index="3" icon="store">
+                &nbsp;Product
+        </vs-sidebar-item>
+         <vs-sidebar-item @click=" change('/prediction','11')" :class="checkRouter(11)"  index="11" icon="ondemand_video">
+                &nbsp;Prediction
+        </vs-sidebar-item>
+
+            <vs-sidebar-item @click="change('/setting/user','1')" :class="checkRouter(1)" index="1" icon="person">
+             &nbsp; &nbsp;User Setting
+            </vs-sidebar-item>
+
+              <vs-sidebar-item @click="change('/setting/company','2')"  :class="checkRouter(2)" index="2" icon="location_city">
+               &nbsp;&nbsp;Company Setting
+            </vs-sidebar-item>
+
+            <div class="footer-sidebar" slot="footer">
+              <vs-sidebar-item @click=" change('/logout','99')" class="lnot wh fs22" index="99" icon="subdirectory_arrow_right">
+                Logout
+            </vs-sidebar-item>
+            </div>
+
+        </vs-sidebar>
     </div>
 
-    <!-- Sidebar/menu -->
-    <nav  v-if="Slide" :class="_mbs('navbar')+' outer-container  w3-sidebar  w3-collapse  w3-white w3-animate-left '+navCss" style="z-index:3;width:220px;"><br>
-   <!-----   <div class="w3-container w3-row">
-        <div class="w3-col 12 pd-20"><br><br>
-          <center> <img src="../../assets/image/logo.png" style="width:80%;!important"></center>
-        </div>
-
-      </div>
-      <hr>
-      <div class="w3-container">
-
-      </div>  ----------><br><br><br>
-      <div class="w3-bar-block wh nav-noselect font inner-container">
-     
-      
-        <!---- <a @click="$router.push('/debug')" class="w3-bar-item w3-button  pd-16  w3-active"  >&nbsp;&nbsp;&nbsp;&nbsp;<i class="mdi mdi-shopping"></i>&nbsp;
-          Component</a>
-         <a @click="$router.push('/debug/select')"    class="w3-bar-item w3-button  pd-16    "  >&nbsp;&nbsp;&nbsp;&nbsp;<i class="mdi mdi-shopping"></i>&nbsp;
-          Select</a>
-             <a @click="$router.push('/debug/datatable')"   class="w3-bar-item w3-button  pd-16    "  >&nbsp;&nbsp;&nbsp;&nbsp;<i class="mdi mdi-shopping"></i>&nbsp;
-          Datable</a>
-          
-              <a @click="$router.push('/debug/alert')"    class="w3-bar-item w3-button  pd-16    "  >&nbsp;&nbsp;&nbsp;&nbsp;<i class="mdi mdi-shopping"></i>&nbsp;
-          Alert</a>
-
-            <a @click="$router.push('/setting')"  class="w3-bar-item w3-button  pd-16    "  >&nbsp;&nbsp;&nbsp;&nbsp;<i class="mdi mdi-shopping"></i>&nbsp;
-          Setting</a> 
-        <a @click="$router.push('/root')"  class="w3-bar-item w3-button  pd-16    " >&nbsp;&nbsp;&nbsp;&nbsp;<i class="mdi mdi-shopping"></i>&nbsp;
-          Root</a> ---->
-
-       <a @click="logout()" class="w3-bar-item w3-button pd-16" >&nbsp;&nbsp;&nbsp;&nbsp;
-         <i class="mdi mdi-desktop-mac-dashboard"></i>&nbsp;
-          Dashboard
-        </a>
-
-       
-
-         <b-btn v-b-toggle.collapse1 class="w3-bar-item w3-button pd-16" style="background:transparent;">&nbsp;&nbsp;&nbsp;&nbsp;
-         <i class="mdi mdi-account-convert"></i>&nbsp;
-          Lead</b-btn>
-            <b-collapse id="collapse1" class="mt-2 lhead">
-               <a  dv-b-toggle.lead class="w3-bar-item w3-button pd-16" >&nbsp;&nbsp;&nbsp;&nbsp;
-                <i class="mdi mdi-information"></i>&nbsp;
-                  Information
-                </a>
-
-                 <a  dv-b-toggle.lead class="w3-bar-item w3-button pd-16" >&nbsp;&nbsp;&nbsp;&nbsp;
-                  <i class="mdi mdi-chart-bubble"></i>&nbsp;
-                   Acticity
-                  </a>
-            </b-collapse>
- 
-      
-
-        <a @click="logout()" class="w3-bar-item w3-button pd-16" >&nbsp;&nbsp;&nbsp;&nbsp;
-         <i class="mdi mdi-human-greeting"></i>&nbsp;
-          Agent
-        </a>
-
-        <a @click="logout()" class="w3-bar-item w3-button pd-16" >&nbsp;&nbsp;&nbsp;&nbsp;
-         <i class="mdi mdi-human-male-female"></i>&nbsp;
-          Supplier
-        </a>
-
-        <a @click="logout()" class="w3-bar-item w3-button pd-16" >&nbsp;&nbsp;&nbsp;&nbsp;
-         <i class="mdi mdi-calculator-variant"></i>&nbsp;
-          Operation
-        </a>
-
-        <a @click="logout()" class="w3-bar-item w3-button pd-16" >&nbsp;&nbsp;&nbsp;&nbsp;
-         <i class="mdi mdi-human-handsup"></i>&nbsp;
-          Account
-        </a>
- 
-        <b-btn v-b-toggle.Contract class="w3-bar-item w3-button pd-16" style="background:transparent;">&nbsp;&nbsp;&nbsp;&nbsp;
-         <i class="mdi mdi-account-card-details"></i>&nbsp;
-          Contract</b-btn>
-            <b-collapse id="Contract" class="mt-2 lhead">
-               <a  dv-b-toggle.lead class="w3-bar-item w3-button pd-16" >&nbsp;&nbsp;&nbsp;&nbsp;
-                <i class="mdi mdi-information"></i>&nbsp;
-                   Information
-                </a>
-
-                 <a  dv-b-toggle.lead class="w3-bar-item w3-button pd-16" >&nbsp;&nbsp;&nbsp;&nbsp;
-                  <i class="mdi mdi-chart-bubble"></i>&nbsp;
-                     Acticity
-                  </a>
-            </b-collapse>
- 
-        <b-btn v-b-toggle.Opperatunity class="w3-bar-item w3-button pd-16" style="background:transparent;">&nbsp;&nbsp;&nbsp;&nbsp;
-         <i class="mdi mdi-hexagon-multiple"></i>&nbsp;
-          Opperatunity</b-btn>
-            <b-collapse id="Opperatunity" class="mt-2 lhead">
-               <a  dv-b-toggle.lead class="w3-bar-item w3-button pd-16" >&nbsp;&nbsp;&nbsp;&nbsp;
-                <i class="mdi mdi-information"></i>&nbsp;
-                   Information
-                </a>
-
-                 <a  dv-b-toggle.lead class="w3-bar-item w3-button pd-16" >&nbsp;&nbsp;&nbsp;&nbsp;
-                  <i class="mdi mdi-chart-bubble"></i>&nbsp;
-                     Acticity
-                  </a>
-            </b-collapse>
-
-        <a @click="logout()" class="w3-bar-item w3-button pd-16" >&nbsp;&nbsp;&nbsp;&nbsp;
-         <i class="mdi mdi-shopping"></i>&nbsp;
-          Product
-        </a>
-
-        <a @click="logout()" class="w3-bar-item w3-button pd-16" >&nbsp;&nbsp;&nbsp;&nbsp;
-         <i class="mdi mdi-chart-areaspline"></i>&nbsp;
-          Prediction
-        </a>
-
-        <a @click="logout()" class="w3-bar-item w3-button pd-16" >&nbsp;&nbsp;&nbsp;&nbsp;
-         <i class="mdi mdi-file-document-box-multiple"></i>&nbsp;
-          Report
-        </a>
- 
-        
-         <b-btn v-b-toggle.setting class="w3-bar-item w3-button pd-16" style="background:transparent;">&nbsp;&nbsp;&nbsp;&nbsp;
-         <i class="mdi mdi-settings"></i>&nbsp;
-          Setting</b-btn>
-            <b-collapse id="setting" class="mt-2 lhead"  >
-               <a  @click="$router.push('/setting/company')"  class="w3-bar-item w3-button pd-16" >&nbsp;&nbsp;&nbsp;&nbsp;
-                <i class="mdi mdi-office-building"></i>&nbsp;
-                  Company
-                </a>
-
-                 <a  @click="$router.push('/setting/user')"  class="w3-bar-item w3-button pd-16" >&nbsp;&nbsp;&nbsp;&nbsp;
-                  <i class="mdi mdi-account"></i>&nbsp;
-                    User
-                  </a>
-
-                     <a  @click="$router.push('/setting/web')"  class="w3-bar-item w3-button pd-16" >&nbsp;&nbsp;&nbsp;&nbsp;
-                  <i class="mdi mdi-web"></i>&nbsp;
-                    Website Setting
-                  </a>
-            </b-collapse>
-
-
-
-        <a @click="logout()" class="w3-bar-item w3-button  pd-16    "  >&nbsp;&nbsp;&nbsp;&nbsp;<i class="mdi mdi-logout"></i>&nbsp;
-          Logout</a>
- 
-      </div>
-    </nav>
-
-
-    <!-- Overlay effect when opening sidebar on small screens -->
-    <div class="w3-overlay w3-hide-large w3-animate-opacity" @click="on()" style="cursor:pointer" title="close side menu"
-      id="myOverlay"></div>
-
-    <!-- !PAGE CONTENT! -->
-
-
-    <!-- End page content -->
-  </div>
-
- 
 </template>
 
 <script>
-  import {
-    get
-  } from "vuex-pathify"
-  import swal from 'sweetalert2'
-
-  export default {
-   
-    data: () => ({
-      nbsp: '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
-      nav: true,
-      navCss: 'none',
-      navFull: true,
-      name:'',
-       
-    }),
-    computed: {
-      User:get("Login/userData"),
-      _mbs: get("setting/setValue"), 
-        getToken:get("Login/userToken"),
-        /*---------Navbar Data--------------*/ 
-        Nav:get('navbar/navbar'),
-        changeNav:get('navbar/changeNavbar'),
-
-        Active:get('navbar/active'),
-        changeActive:get('navbar/changeActive'),
-
-        Slide:get('navbar/slide'),
-        changeSlide:get('navbar/changeSlide'),
-
-        
+import { get } from "vuex-pathify";
+export default {
+  name: "Root",
+  /*-------------------------Load Component---------------------------------------*/
+  components: {},
+  /*-------------------------Set Component---------------------------------------*/
+  props: {},
+  /*-------------------------DataVarible---------------------------------------*/
+  data() {
+    return {
+      page: 0,
+      active: true,
+      notExpand: false,
+      reduce: true,
+      activeItem: true,
+      login: true
+    };
+  },
+  /*-------------------------Run Methods when Start this Page------------------------------------------*/
+  async mounted() {
+    /**** Call loading methods*/
+    this.load();
+  },
+  /*-------------------------Run Methods when Start Routed------------------------------------------*/
+  async beforeRouteEnter(to, from, next) {
+    next();
+  },
+  /*-------------------------Vuex Methods and Couputed Methods------------------------------------------*/
+  computed: {
+    userData: get("Login,userData"),
+    _mbs: get("setting/setValue"),
+    getToken: get("Login/userToken")
+  },
+  /*-------------------------Methods------------------------------------------*/
+  methods: {
+    getImge(img) {
+      let user = JSON.parse(JSON.stringify(img));
+      try {
+        let img_user = user.user.img_user;
+        return img_user;
+      } catch (e) {}
     },
-    mounted() {
-      this.load()
+    checkRouter(routes) {
+      if (this.page == routes) {
+        return "ldeep wh";
+      }
     },
-    methods: {
-
-     load:async function(){
-     //  this.name =  this.User.user.name;
-       
-     },
-      lead(){
-      swal({
-        title: 'Where did yo go to Lead?',
-        text: "Choose your lead menu.", 
-        showCancelButton: true, 
-        confirmButtonColor:'#1E90FF', 
-        confirmButtonText: 'Acticity',
-        cancelButtonText:'Information',
-        cancelButtonColor:'#1E90FF', 
-      }).then((result) => {
-        if (result.value) {
-          swal(
-            'Deleted!',
-            'Your file has been deleted.',
-            'success'
-          )
-        }
-      })
-      },
-
-      SlideChange(){
-        if(this.Slide){
-          this.changeSlide(false);
-        }else{
-           this.changeSlide(true);
-        }
-      },
-      on() {
-        this.changeSlide(true);
-        if (this.nav) {
-          this.navCss = 'block';
-          this.nav = false; 
-        } else {
-          this.navCss = 'none';
-          this.nav = true; 
-        }
-
-      },
- 
-    logout:async function(){
-      this.$store.dispatch('Login/logout'); 
-      this.changeNav(false);
-      location.reload();
-    }
-
+    change(route, page) {
+      this.$router.push(route);
+      this.page = page;
     },
-
+    /******* Methods default run ******/
+    load: async function() {}
   }
+};
 </script>
 
 
-
 <style>
-  .bgpp {
-    background: red !important;
-  }
-
-  .none {
-    display: none !important;
-  }
-
-  .block {
-    display: block !important;
-  }
-
-
-  
-.outer-container { 
- 
-   
+.vs-sidebar--background {
+  display: none;
 }
-.inner-container {
- 
- 
-  
-}
-.inner-container::-webkit-scrollbar {
-  
+.vs-sidebar--items::-webkit-scrollbar {
+  display: none;
 }
 </style>
+
+ 

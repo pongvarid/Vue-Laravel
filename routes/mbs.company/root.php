@@ -9,3 +9,5 @@ Route::get('open', 'DataController@open');
 Route::post('register', 'UserController@register');
 Route::post('update', 'UserController@update');
 Route::post('delete', 'UserController@delete');
+
+Route::resource('xxxxx', 'UserController');

@@ -1,12 +1,16 @@
 <template>
     <div id="app">
-         <title>{{_mbs('tittle')}}</title>
-        <Loading />
-           <navbar />
-        
-             <router-view />
-       
-       
+        <title>{{_mbs('tittle')}}</title>
+        <Loading /> 
+        <navbar v-if="$router.history.current.path != '/login'" />
+        <div :class="'main ' " :style="checkResLogin()" >
+
+            <router-view />
+
+        </div>
+
+
+
     </div>
 
 
@@ -20,11 +24,12 @@
         get
     } from "vuex-pathify"
 
-       import navbar from "./components/DefaultComponent/Navigation.vue";
+    import navbar from "./components/DefaultComponent/Navigation.vue";
     export default {
         name: "App",
         components: {
-            Loading,navbar
+            Loading,
+            navbar
         },
         data: () => ({
 
@@ -32,15 +37,34 @@
         computed: {
             _mbs: get("setting/setValue"),
             loading: get("loading/setLoad"),
-            Slide:get('navbar/slide'), 
-            changeNav:get('navbar/changeNavbar'),
+            User: get("Login/userData"),
+            /*---------Navbar Data--------------*/
+            Nav: get('navbar/navbar'),
+            changeNav: get('navbar/changeNavbar'),
+
+            Active: get('navbar/active'),
+            changeActive: get('navbar/changeActive'),
+
+            Slide: get('navbar/slide'),
+            changeSlide: get('navbar/changeSlide'),
+
         },
         props: {
 
         },
         methods: {
-            onSlide(){
-               return '';
+            onSlide() {
+                if(this.Slide){
+                     let url = this.$router.history.current.path;
+                if (url == '/login' || url == '/root') {
+                   return '';
+                }else{
+                    return 'margin-left:220px;';
+                }
+                    
+                }else{
+                    return '';
+                }
             },
 
             showLoad: async function () {
@@ -52,25 +76,53 @@
                 await store.dispatch("loading/dismissLoad")
             },
 
-            loginCheck: async function ()  {
+            loginCheck: async function () {
                 let storage = window.localStorage;
-                if (!storage.getItem('user-token')) { 
-                     this.changeNav(false);
+                if (!storage.getItem('user-token')) {
+                    this.changeNav(false);
                     this.$router.push('/login');
-                }else{
+                } else {
                     this.changeNav(true);
                 }
             },
+                
+            checkResLogin(){
+                  let url = this.$router.history.current.path;
+                if (url == '/login' || url == '/root'){
+                    return ' ';
+                }else{
+                    return 'margin-left:80px!important;';
+                }
+            },
+
+            switchNavbarWhenLogin: async function () {
+             
+                let url = this.$router.history.current.path;
+                if (url == '/login' || url == '/root') {
+                    this.changeNav(false);
+                    try {
+                        if (this.User.user.fullname) {
+                            //alert('haveUser');
+                            this.changeNav(true);
+                            await this.$router.push('/');
+                        }
+                    } catch (error) {
+
+                    }
+
+                } else {
+                    this.changeNav(true);
+                }
+            }
 
         },
         async mounted() {
             await store.dispatch("setting/getData");
             await store.dispatch("setting/getChoice");
-            await this.loginCheck(); 
-            await  this.$store.dispatch('Login/getUserData');
-             if(this.$router.history.current.path == '/root' && this.$router.history.current.path == '/login'){
-                      this.changeNav(false);
-             }
+            await this.loginCheck();
+            await this.switchNavbarWhenLogin();
+            await this.$store.dispatch('Login/getUserData');
+
             // this.load(true);
         },
         created() {
@@ -91,7 +143,7 @@
 
 <style>
     @media only screen and (max-width: 1024px) {
-        .mr-fix-left {
+        .main {
             margin-left: 0px !important;
         }
     }

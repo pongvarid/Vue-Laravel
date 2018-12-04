@@ -13,7 +13,7 @@ class UserController extends Controller
 
 {       
         public function user(){
-                return User::all();
+                return User::with(['branch'])->get();
         }
         public function update(Request $request){
                 $user = User::find($request->id);
@@ -45,7 +45,8 @@ class UserController extends Controller
     public function register(Request $request)
     {
             $validator = Validator::make($request->all(), [
-            'name' => 'required ',
+            'fullname' => 'required ',
+            'username' => 'required ',
             'email' => 'required ',
             'password' => 'required',
         ]);
@@ -55,7 +56,8 @@ class UserController extends Controller
         }
 
         $user = User::create([
-            'name' => $request->get('name'),
+            'fullname' => $request->get('fullname'), 
+            'username' => $request->get('username'),
             'email' => $request->get('email'),
             'password' => Hash::make($request->get('password')),
             'permission'=>$request->get('permission'),

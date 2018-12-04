@@ -1,9 +1,12 @@
 <!----------Make By YourName---------------->
  <template>
 <div>
-     <select class="form-control" v-model="timezone" @change="onChange()">
-   <option selected="selected" active>Select TimeZone</option>
-   <option value="Etc/GMT+12">(GMT-12:00) International Date Line West</option>
+
+  <b-form-select class="mb-3"  v-model="timezone" @change="onChange()" value="0" :required="required">
+      <template slot="first"> 
+        <option :value="null" disabled>Please Select Timezone</option>
+      </template>
+      <option value="Etc/GMT+12">(GMT-12:00) International Date Line West</option>
    <option value="Pacific/Midway">(GMT-11:00) Midway Island, Samoa</option>
    <option value="Pacific/Honolulu">(GMT-10:00) Hawaii</option>
    <option value="US/Alaska">(GMT-09:00) Alaska</option>
@@ -85,7 +88,8 @@
    <option value="Pacific/Auckland">(GMT+12:00) Auckland, Wellington</option>
    <option value="Pacific/Fiji">(GMT+12:00) Fiji, Kamchatka, Marshall Is.</option>
    <option value="Pacific/Tongatapu">(GMT+13:00) Nuku'alofa</option>
-</select>
+    </b-form-select>
+ 
     </div>
 </template>
 
@@ -99,7 +103,8 @@ export default {
     },
   /*-------------------------Set Component---------------------------------------*/
 props:{
-
+    def:'',
+    required:false,
 },
     /*-------------------------DataVarible---------------------------------------*/
     data() {
@@ -130,6 +135,11 @@ methods:{
 
     /******* Methods default run ******/
     load:async function(){
+        this.timezone = 'Select TimeZone';
+        if(this.def != ''){
+            this.timezone = this.def;
+        }
+         
 }
 },
     }

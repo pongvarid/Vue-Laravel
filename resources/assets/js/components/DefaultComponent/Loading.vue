@@ -2,7 +2,7 @@
 
     <div>
 
-        <b-modal v-model="dialog" hide-footer hide-header no-close-on-backdrop no-close-on-esc centered>
+        <!--- <b-modal v-model="dialog" hide-footer hide-header no-close-on-backdrop no-close-on-esc centered>
             <div class="container" style="border-radius:50px;">
                 <div class="row">
                     <div class="col-4 pdt-6">
@@ -14,8 +14,8 @@
                 </div>
 
             </div>
-        </b-modal>
-
+        </b-modal>  ---->
+        {{checkLoad()}}
     </div>
 
 
@@ -27,12 +27,28 @@
     } from 'vuex-pathify'
 
     export default {
-        computed: { 
-                 
+        computed: {
+
             dialog: get("loading/isLoad")
         },
-        methods: {
+        mounted() {
 
+        },
+        methods: {
+            checkLoad() {
+                try {
+                    if (this.dialog) {
+                        this.$vs.loading({type:'border',text:'Loading'});
+                        return '';
+                    } else {
+                        this.$vs.loading.close()
+                        return '';
+                    }
+                } catch (error) {
+
+                }
+
+            },
         }
     }
 </script>

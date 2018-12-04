@@ -2,15 +2,15 @@
 <template>
     <div>
         <h2>User Management</h2>
-        <b-btn @click="onModal()" class="btn btn-light lbtn-sea no-border circle"><span class="fa fa-plus-circle"></span>
+        <b-btn @click="onModal()" :class="'btn no-border round wh ' + _mbs('theme')"><span class="fa fa-plus-circle"></span>
             &nbsp;Add User</b-btn>
         <hr>
-        <table class="table table-hover">
+        <table :class="'table table-hover '">
             <thead>
-                <tr class="lnav-deep wh">
+                <tr :class="'lnav-deep wh ' + _mbs('theme')">
                     <th scope="col">Id</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Name</th>
+                    <th scope="col">fullname</th>
                     <th scope="col">Permission</th>
                     <th scope="col">Action</th>
                 </tr>
@@ -19,35 +19,35 @@
                 <tr v-for="User in user">
                     <th scope="row">{{User.id}}</th>
                     <td>{{User.email}}</td>
-                    <td>{{User.name}}</td>
+                    <td>{{User.fullname}}</td>
                     <td>{{_get(User.permission)}}</td>
                     <td>
-                        <b-btn @click="onUpdateModal(User)" class="lbtn-deep circle" style="border:none;">Edit</b-btn>
-                        <b-btn @click="destroyData(User)" style="border:none;" class="lbtn-not circle">Delete</b-btn>
+                        <b-btn @click="onUpdateModal(User)" class="ldeep round" style="border:none;">Edit</b-btn>
+                        <b-btn @click="destroyData(User)" style="border:none;" class="lnot round">Delete</b-btn>
                     </td>
                 </tr>
-            </tbody>
+            </tbody>  
         </table>
-        <modal name="user-modal" height="340" resizable adaptive draggable :clickToClose="false">
-            <div class="modal-header lnav-deep wh">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+        <modal name="user-modal" height="auto" resizable adaptive draggable :clickToClose="false">
+            <div :class=" 'modal-header wh '+_mbs('theme') ">
+                <h5 class="modal-title" id="exampleModalCenterTitle">User Management</h5>
                 <button type="button" class="close" @click="offModal()">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <b-container>
                 <div class='row'>
-                    <div class="col-12">
+                    <div class="col-12"> 
                         <form @submit="storeData()" class="pd-20">
-                            <input type="text" class="form-control mrt-6" placeholder="Name" v-model="form.name"
-                                required>
-                            <input type="text" class="form-control mrt-6" placeholder="Email" v-model="form.email"
-                                required>
-                            <input v-if="!updated" type="text" class="form-control mrt-6" placeholder="Password" v-model="form.password"
-                                required>
-                            <Select class="mrt-6" name="UserPermission" :v="form.permission" v-model="form.permission" />
+                             <Select class="mrt-6" name="UserPermission" :v="form.permission" v-model="form.permission" /><br>
+                           
+                             <Input v-model="form.fullname" :def="form.fullname" label="Name" cover="  "/>
+                             <Input v-model="form.username"  :def="form.username"  label="Username" cover="  "/>
+                             <Input v-model="form.email"  :def="form.email"  label="email" cover="  "/>
+                             <Input v-if="!updated"  v-model="form.password" label="Password" cover="  "/>
+  
                             <br>
-                             <center> <b-btn v-if="form.permission"  class="btn-lg wd100 pd-10 lnav-deep f30 wh circle"  type="submit">Done</b-btn></center> <br><br>
+                             <center> <b-btn v-if="form.permission"  :class="'btn-lg wd100 pd-10 f30 wh round '+ _mbs('theme') "  type="submit">Done</b-btn></center> <br><br>
                         </form>
 
                     </div>
@@ -62,11 +62,12 @@
         get
     } from "vuex-pathify";
     import Select from '../../../components/DefaultComponent/Select.vue';
+    import Input from '../../../components/MbsComponent/Input';
     export default {
         name: 'Root',
         /*-------------------------Load Component---------------------------------------*/
         components: {
-            Select
+            Select,Input
         },
         /*-------------------------Set Component---------------------------------------*/
         props: {
@@ -75,7 +76,9 @@
         /*-------------------------DataVarible---------------------------------------*/
         data() {
             return {
-                form: {},
+                form: {
+                   
+                },
                 updated: false,
 
             };
@@ -93,6 +96,7 @@
         computed: {
             user: get('user/user'),
             _get: get("setting/getValue"),
+             _mbs: get('setting/setValue'), 
         },
         /*-------------------------Methods------------------------------------------*/
         methods: {
@@ -115,7 +119,7 @@
             },
             //getdefault form
             defaultForm() {
-                this.form = {};
+                this.form = {  };
             },
             //Store data to vuex --post
             storeData: async function () {

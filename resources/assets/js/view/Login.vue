@@ -14,13 +14,13 @@
                             <img src="https://www.picz.in.th/images/2018/10/26/3WXs7f.png" style="width:220px;" alt="">
                             <br><br> 
                             <form @submit="login" class="login-form">
-                                <input v-model="form.email" type="text" placeholder="Email or Username" />
+                                <input v-model="form.email" type="text" placeholder="Username" />
                                 <input v-model="form.password"  type="password" placeholder="Password" />
                                 <button type="submit" class="btn btn-lg ldeep round big wh">Login</button>
                                 
                             </form>
                             <p v-if="_mbs('register_lock') == 1" class="message">Not registered? <a href="#">Create an account</a></p>
-                           
+                             <p v-if="_mbs('reset-password') == 1" class="message">Reset <a href="#">Pasword</a></p>
                         </div>
                     </div>
                 </div>
@@ -55,9 +55,11 @@ export default {
   async mounted() {
     /**** Call loading methods*/
     this.load();
+    
   },
   /*-------------------------Run Methods when Start Routed------------------------------------------*/
   async beforeRouteEnter(to, from, next) {
+    
     next();
   },
   /*-------------------------Vuex Methods and Couputed Methods------------------------------------------*/
@@ -66,27 +68,49 @@ export default {
       token:get('Login,userToken'),
         userData:get('Login,userData'),
         navOn: get("setting/navOn"),
-        naviOn: get("setting/naviOn"),       
+        naviOn: get("setting/naviOn"),    
+        
+            /*---------Navbar Data--------------*/ 
+        Nav:get('navbar/navbar'),
+        changeNav:get('navbar/changeNavbar'),
+
+        Active:get('navbar/active'),
+        changeActive:get('navbar/changeActive'),
+
+        Slide:get('navbar/slide'),
+        changeSlide:get('navbar/changeSlide'),
   },
   /*-------------------------Methods------------------------------------------*/
   methods: {
     login: async function(){
 
-        let login =  this.$store.dispatch('Login/Login',this.form);
-         let storage = window.localStorage;
-       if(storage.getItem('user-token')){
-          this.navOn(true);
-          this.$router.push('/main'); 
+        let login =  await this.$store.dispatch('Login/Login',this.form); 
+        await this.checkUserLogin();
+               
+    },
+
+
+    checkUserLogin:async function(){
+        let storage = await window.localStorage;
+       if(storage.getItem('user-token')){ 
+         await this.$router.push('/');
+             this.changeNav(true); 
+              
         }else{
             this.form={};
         }
+        
          
-               
+      
     },
+
+  
     /******* Methods default run ******/
     load: async function() {
         this.$store.dispatch('Login/getUserData');
        this.naviOn(false);
+           
+ 
     }   
   }
 };

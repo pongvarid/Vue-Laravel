@@ -1,4 +1,4 @@
-
+import {loading} from 'vuesax'
 const state = {
     isLoad : false,
     stack : 0
@@ -25,12 +25,13 @@ const actions = {
     dismissLoad : async (context) => {
         setTimeout(
             () => {
+       
                context.state.stack -= 1
                if(context.state.stack == 0) {
                    context.commit("setLoad",false)
                }
             },
-            1000
+            2000
         )
     }
 }

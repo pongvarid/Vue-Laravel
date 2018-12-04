@@ -4,20 +4,24 @@
 
         <navbar />
         <div class="container"><br><br>
-            <div class='row'>
-                <div class='col-6 '>
-                    <Choice />
-                </div>
 
-                <div class='col-6 '>
-                     <ChoiceDetail />
-                </div>
-                 
-                 
-            </div>
+
+            <b-card no-body>
+                <b-tabs card>
+                    <b-tab title="Choice Heading" active>
+                        <Choice />
+                    </b-tab>
+                    <b-tab title="Choice Detail">
+                        <ChoiceDetail />
+                    </b-tab>
+                </b-tabs>
+            </b-card>
+
+
+
         </div>
 
-      
+
 
     </div>
 </template>
@@ -26,8 +30,8 @@
     import navbar from './Components/navigation'
     import Select from '../../components/DefaultComponent/Select'
     import Varible from './Components/Variable';
-        import Choice from './Components/Choice';
-          import ChoiceDetail from './Components/ChoiceDetail';
+    import Choice from './Components/Choice';
+    import ChoiceDetail from './Components/ChoiceDetail';
     import {
         get
     } from "vuex-pathify"
@@ -37,7 +41,7 @@
         /*-------------------------Load Component---------------------------------------*/
         components: {
             navbar,
-            Select, 
+            Select,
             Varible,
             Choice,
             ChoiceDetail
@@ -75,11 +79,11 @@
             },
             offUserModeal() {
 
-            }, 
+            },
             /******* Methods default run ******/
             load: async function () {
 
-              
+
 
             }
         },

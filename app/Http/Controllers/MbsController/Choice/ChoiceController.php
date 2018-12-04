@@ -15,7 +15,7 @@ class ChoiceController extends Controller
      */
     public function index()
     {
-        return  Choice::get();
+        return  Choice::where('value','!=',null)->get();
     }
 
     /**
@@ -72,9 +72,12 @@ class ChoiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($name)
     {
-        return Choice::where('name',$name)->get();
+        $choice =  Choice::where('name',$name)->first();
+
+        return  Choice::where('type','=', $choice->type)->where('value','!=',null)->get();
+        
     }
 
     /**

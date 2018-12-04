@@ -41,6 +41,7 @@
             load: async function () {
                 localStorage.removeItem("user-token")
                 this.$router.replace('/login');
+                 
 
             }
         },

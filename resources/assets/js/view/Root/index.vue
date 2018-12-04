@@ -1,20 +1,29 @@
 <!----------Make By Pongvarid---------------->
 <template>
     <div class="container-fulid">
-      
+
         <navbar />
         <div class="container"><br><br>
-            <div class='row'>
-                <div class='col-6 '>
-                    <UserPermissionLayout />
-                </div>
-                <div class='col-6'>
-                    <UserManage />
-                </div>
-            </div>
+
+            <b-card no-body >
+                <b-tabs card > 
+                    <b-tab title="User Permission" active>
+                        <UserPermissionLayout />
+                    </b-tab>
+                    <b-tab title="User Management">
+                        <UserManage />
+                    </b-tab>
+                </b-tabs>
+            </b-card>
+
+
+
+
         </div>
 
-      
+
+
+
 
     </div>
 </template>
@@ -59,7 +68,7 @@
         },
         /*-------------------------Vuex Methods and Couputed Methods------------------------------------------*/
         computed: {
-            changeNav:get('navbar/changeNavbar'),
+            changeNav: get('navbar/changeNavbar'),
 
         },
         /*-------------------------Methods------------------------------------------*/
@@ -70,14 +79,14 @@
             },
             offUserModeal() {
 
-            }, 
+            },
             /******* Methods default run ******/
             load: async function () {
                 this.changeNav(false);
-               history.pushState(null, null, location.href);
-                            window.onpopstate = function () {
-                                this.$router.push('/main');
-                     };
+                history.pushState(null, null, location.href);
+                window.onpopstate = function () {
+                    this.$router.push('/main');
+                };
             }
         },
     }

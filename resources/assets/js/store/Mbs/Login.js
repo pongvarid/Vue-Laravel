@@ -1,6 +1,7 @@
 import axios from 'axios'
 import _ from 'lodash'
 import swal from 'sweetalert2'
+ 
 const state = {
     userData:'',
     userToken:localStorage.getItem('user-token') || ''
@@ -10,7 +11,7 @@ const getters = {
 }
 
 const mutations = {
-
+ 
 }
 
 const actions = {
@@ -28,6 +29,7 @@ const actions = {
                 localStorage.setItem('user-token', r.data.token) 
                 actions.getToken();
                 actions.getUserData();
+                location.reload();
                 return true;
             }).catch((e) => {
                 swal({

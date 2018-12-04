@@ -1,27 +1,25 @@
 <!----------Make By YourName---------------->
 <template>
-    <div class="container"><br><br><br><br>
+    <div class="container-fluid"><br>
         <div class="row">
 
             <div class="col-12">
                 <b-card class="shadow-bl circle">
                     <div class='row'>
-                        <div class='col-10'>
-                            <h3 class="fs30"> <i class="mdi mdi-office-building fs60"></i>&nbsp;&nbsp;Company Setting</h3>
+                        <div class='col-12'>
+                            <h3 class="fs30"> <i class="mdi mdi-office-building fs60 w3-hide-small"></i>&nbsp;&nbsp;Company Setting</h3>
                         </div>
-                        <div class='col-2'>
-                            <AddCompany />
-                        </div>
+                        
                     </div>
                 </b-card>
             </div>
 
-            <div class="col-6 mrt-30">
+            <div class="col-md-5 col-12 mrt-30">
                 <MyCompany />
             </div>
 
-            <div class="col-6 mrt-30">
-                <ListCompany />
+            <div class="col-md-7 col-12 mrt-30">
+                 <AddCompany   />
             </div>
 
         </div>
