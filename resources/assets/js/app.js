@@ -24,7 +24,7 @@ import 'animate.css'
 import VueFloatLabel from "vue-float-label";
 //import FloatingLabel from 'vue-simple-floating-labels'
 import "@mdi/font/css/materialdesignicons.min.css"
- 
+import notification from "@c/NewComponent/NotiShow";
 import VModal from 'vue-js-modal'
 import VueSweetalert2 from 'vue-sweetalert2';
 import vSelect from 'vue-select'
@@ -43,6 +43,7 @@ const router = new VueRouter({
     routes 
 });
 Vue.component('multiselect', Multiselect)
+Vue.component('notification',notification);
 window.events = new Vue();
 
 window.flash = function(message, type = 'success') {
@@ -50,8 +51,7 @@ window.flash = function(message, type = 'success') {
 };
 
 require('./bootstrap')
-window.Vue = require('vue');
- 
+
 new Vue({
     el: '#app',
     router, 
@@ -61,7 +61,7 @@ new Vue({
     mounted(){
         Echo.channel('noti-channel')
         .listen('NotificationEvent', (e) => {
-            console.log('notification ready');
+            //console.log('notification run');
         });
     }
 });

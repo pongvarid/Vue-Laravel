@@ -6,17 +6,19 @@
                 <div class='col-12'>
                     <h3 class="fs30"> Dashboard</h3>
                 </div>
+                <notification/>
             </div>
         </b-card>
     </div>
 </template>
 
 <script>
+
     export default {
         name: 'Root',
         /*-------------------------Load Component---------------------------------------*/
         components: {
-
+            
         },
         /*-------------------------Set Component---------------------------------------*/
         props: {

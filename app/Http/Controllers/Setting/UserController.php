@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Validator;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\User;
+use App\Events\NotificationEvent;
+
 class UserController extends Controller
 {
     /**
@@ -54,6 +56,12 @@ class UserController extends Controller
         $data = new User();
         $data->fill($request_data);
         $save = $data->save();
+
+        // --------------------------------------------------
+        // $user = '1';
+        // $message = 'create user success';
+        event(new NotificationEvent);
+
         if($save){
            return 'create success'; 
         }else{

@@ -1,5 +1,5 @@
 <?php
-use App\Events\NotificationEvent;
+//use App\Events\NotificationEvent;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,10 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/noti', function () {
-    event(new NotificationEvent);
-    return 'run';
-});
+// Route::get('/noti', function () {
+//     event(new NotificationEvent);
+//     return 'run';
+// });
 
 
 /********************mbs sitting*********************** */
