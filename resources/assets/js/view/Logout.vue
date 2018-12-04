@@ -40,9 +40,8 @@
             /******* Methods default run ******/
             load: async function () {
                 localStorage.removeItem("user-token")
-                this.$router.replace('/login');
-                 
-
+                this.$router.replace('/login'); 
+                location.reload();
             }
         },
     }

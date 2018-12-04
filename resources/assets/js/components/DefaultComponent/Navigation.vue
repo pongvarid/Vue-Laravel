@@ -11,7 +11,7 @@
             </vs-navbar-item>
 
         </vs-navbar>
-        <vs-sidebar    v-if="login"  :reduce="reduce" :reduce-not-hover-expand="notExpand" parent="body" default-index="1" class=" lblue"
+        <vs-sidebar  v-if="navbar"  :reduce="reduce" :reduce-not-hover-expand="notExpand" parent="body" default-index="1" class=" lblue"
             spacer v-model="active">
             <div class="header-sidebar" slot="header">
               
@@ -102,12 +102,16 @@ export default {
   },
   /*-------------------------Vuex Methods and Couputed Methods------------------------------------------*/
   computed: {
+    navbar:get('navbar/slide'),
     userData: get("Login,userData"),
     _mbs: get("setting/setValue"),
     getToken: get("Login/userToken")
   },
   /*-------------------------Methods------------------------------------------*/
   methods: {
+    navbarChange(){
+
+    },
     getImge(img) {
       let user = JSON.parse(JSON.stringify(img));
       try {

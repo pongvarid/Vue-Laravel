@@ -62,7 +62,7 @@ const actions = {
 
         async logout(context,params){
             localStorage.removeItem("user-token") 
-            
+            location.reload();
         }
         
 
