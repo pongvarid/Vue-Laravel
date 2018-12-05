@@ -1,5 +1,7 @@
 <?php
-//use App\Events\NotificationEvent;
+use App\Events\NotificationEvent;
+use App\Events\TasksEvent;
+use App\Events\EventsEvent;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,9 +17,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/noti', function () {
-//     event(new NotificationEvent);
-//     return 'run';
+
+Route::get('/noti', function () {
+    event(new NotificationEvent);
+    return 'noti run';
+});
+
+// Route::get('/task', function () {
+//     event(new TasksEvent);
+//     return 'task run';
+// });
+
+// Route::get('/event', function () {
+//     event(new EventsEvent);
+//     return 'event run';
 // });
 
 
@@ -52,4 +65,3 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::get('user', 'UserController@getAuthenticatedUser');
     Route::get('closed', 'DataController@closed');
 });
-

@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Lead;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Lead\Event;
+use App\Events\EventsEvent;
 
 class EventController extends Controller
 {
@@ -41,6 +42,8 @@ class EventController extends Controller
         $data = new Event();
         $data->fill($request->all());
         $save = $data->save();
+
+        //event(new EventsEvent($data));
         if($save) return 'create Lead event';
     }
 

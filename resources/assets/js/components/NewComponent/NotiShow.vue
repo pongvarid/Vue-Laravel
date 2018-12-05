@@ -1,21 +1,6 @@
-<!----------Make By YourName---------------->
+<!----------Make By Net---------------->
 <template>
-  <alert
-    :show.sync="showAlert"
-    placement="top-right"
-    :duration="2000"
-    type="success"
-    width="400px"
-    dismissable
-  >
-    <strong>New User!!!</strong>
-    <p>You successfully read this important alert message.</p>
-  </alert>
 
-  <!-- <alert v-model="showAlert" placement="top-right" duration="2000" type="info" width="400px" dismissable>
-        <strong>Well Done!</strong>
-        <p>You successfully read this important alert message.</p>
-  </alert>-->
 </template>
 
 <script>
@@ -30,7 +15,7 @@ export default {
   /*-------------------------DataVarible---------------------------------------*/
   data() {
     return {
-      showAlert: false
+
     };
   },
   /*-------------------------Run Methods when Start this Page------------------------------------------*/
@@ -49,12 +34,12 @@ export default {
   methods: {
     /******* Methods default run ******/
     load: async function() {},
-    noti: async function() {
-      Echo.channel("noti-channel").listen("NotificationEvent", e => {
-        console.log("notification run");
+    noti: async function() { 
+      Echo.channel('noti-channel').listen("NotificationEvent", (user) => {
+        console.log('noti test');
         this.$vs.notify({
-          title: "New user.",
-          text: "Lorem ipsum dolor sit amet, consectetur",
+          title: "Notification test",
+          text: "Notification test",
           color: "green"
         });
       });

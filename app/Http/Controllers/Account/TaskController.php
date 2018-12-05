@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Account;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Account\Task;
+use App\Events\TasksEvent;
 
 class TaskController extends Controller
 {
@@ -41,6 +42,8 @@ class TaskController extends Controller
         $data = new Task();
         $data->fill($request->all());
         $save = $data->save();
+
+        event(new TasksEvent($data));
         if($save) return 'create account task';
     }
 
@@ -78,6 +81,8 @@ class TaskController extends Controller
         $data = Task::find($id);
         $data->fill($request->all());
         $save = $data->save();
+
+        event(new TasksEvent($data));
         if($save) return 'update account task';
     }
 

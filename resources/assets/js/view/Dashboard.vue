@@ -6,7 +6,9 @@
                 <div class='col-12'>
                     <h3 class="fs30"> Dashboard</h3>
                 </div>
-                <notification/>
+                <NotiShow/>
+                <tasksNotiShow/>
+                <eventsNotiShow/>
             </div>
         </b-card>
     </div>

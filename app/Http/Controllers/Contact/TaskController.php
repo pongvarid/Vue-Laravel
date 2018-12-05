@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Contact;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Contact\Task;
+use App\Events\TasksEvent;
 
 class TaskController extends Controller
 {
@@ -41,6 +42,8 @@ class TaskController extends Controller
         $data = new Task();
         $data->fill($request->all());
         $save = $data->save();
+
+        //event(new TasksEvent);
         if($save) return 'create contact task';
     }
 
