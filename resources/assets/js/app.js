@@ -27,10 +27,12 @@ import "@mdi/font/css/materialdesignicons.min.css"
 import NotiShow from "@c/NewComponent/NotiShow";
 import tasksNotiShow from "@c/NewComponent/TasksNotiShow";
 import eventsNotiShow from "@c/NewComponent/EventsNotiShow";
+import birthdayNotiShow from "@c/NewComponent/BirthdayNotiShow";
 import VModal from 'vue-js-modal'
 import VueSweetalert2 from 'vue-sweetalert2';
 import vSelect from 'vue-select'
 import Multiselect from 'vue-multiselect'
+
 Vue.component('le-select', vSelect)
 Vue.use(VueSweetalert2);
  
@@ -49,6 +51,7 @@ Vue.component('multiselect', Multiselect)
 Vue.component('NotiShow',NotiShow);
 Vue.component('tasksNotiShow',tasksNotiShow);
 Vue.component('eventsNotiShow',eventsNotiShow);
+Vue.component('birthdayNotiShow',birthdayNotiShow);
 
 window.events = new Vue();
 

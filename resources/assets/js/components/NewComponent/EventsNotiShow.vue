@@ -1,6 +1,6 @@
 <!----------Make By Net---------------->
 <template>
-  
+ 
 </template>
 
 <script>
@@ -42,12 +42,12 @@ export default {
     noti: async function() {
       Echo.channel("events-channel").listen("EventsEvent", (event) => {
         var user_id = 1; //default
-        console.log('event.users_id:'+event.users_id+' / '+'user_id: '+user_id); //เอา event.user_id == user_id แสดง noti
+        //console.log('event.users_id:'+event.users_id+' / '+'user_id: '+user_id); //เอา event.user_id == user_id แสดง noti
         if(event.users_id == user_id){
           this.$vs.notify({
             title: "New Event: " + event.subject,
-            text: event.description + ' ' + event.start + '-' + event.end,
-            color: "red"
+            text: event.description + '<br>' + event.start + '-' + event.end,
+            color: "green",
           });
         }
       });

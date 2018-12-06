@@ -2,6 +2,9 @@
 use App\Events\NotificationEvent;
 use App\Events\TasksEvent;
 use App\Events\EventsEvent;
+use App\Events\BirthdayEvent;
+use App\Model\Agent;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,10 +21,16 @@ Route::get('/', function () {
 });
 
 
-Route::get('/noti', function () {
-    event(new NotificationEvent);
-    return 'noti run';
-});
+// Route::get('/noti', function () {
+//     event(new NotificationEvent);
+//     return 'noti run';
+// });
+
+Route::get('/bd', function () {
+        $data = Agent::where('id', 1)->first();
+        event(new BirthdayEvent($data));
+        return  'bd run';
+    });
 
 // Route::get('/task', function () {
 //     event(new TasksEvent);

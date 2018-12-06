@@ -40,7 +40,7 @@ export default {
         this.$vs.notify({
           title: "Notification test",
           text: "Notification test",
-          color: "green"
+          color: "black"
         });
       });
     }

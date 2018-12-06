@@ -37,12 +37,12 @@ export default {
     noti: async function() {
       Echo.channel("tasks-channel").listen("TasksEvent", (task) => {
         var user_id = 1; //default
-        console.log('task.users_id:'+task.users_id+' / '+'user_id: '+user_id); //เอา event.user_id == user_id แสดง noti
+        //console.log('task.users_id:'+task.users_id+' / '+'user_id: '+user_id); //เอา event.user_id == user_id แสดง noti
         if(task.users_id == user_id){
           this.$vs.notify({
             title: "New Task: " + task.subject,
             text: task.due_date,
-            color: "blue"
+            color: "green"
           });
         }
       });

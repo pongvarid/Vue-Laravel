@@ -9,6 +9,7 @@
                 <NotiShow/>
                 <tasksNotiShow/>
                 <eventsNotiShow/>
+                <birthdayNotiShow/>
             </div>
         </b-card>
     </div>
